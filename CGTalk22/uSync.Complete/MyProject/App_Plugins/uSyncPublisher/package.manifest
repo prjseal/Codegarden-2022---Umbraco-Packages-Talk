@@ -1,0 +1,11 @@
+{
+  "name": "uSync.Publisher",
+  "version": "9.4.0",
+  "javascript": [
+    "~/App_Plugins/uSyncPublisher/usyncpublisher.9.4.0.min.js"
+  ],
+  "css": [
+    "~/App_Plugins/uSyncPublisher/usyncpublisher.9.4.0.min.css"
+  ],
+  "bundleOptions": "None"
+}

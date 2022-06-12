@@ -1,0 +1,21 @@
+<div ng-controller="publisherServerSettingsController as pvm">
+    <umb-box>
+        <umb-box-header title="Permissions"
+                        description="Control what users can do with this server"
+                        ng-click="model.showAdvanced = !model.showAdvanced">
+        </umb-box-header>
+        <umb-box-content ng-if="model.showAdvanced">
+
+            <umb-control-group label="@usyncpublish_groups"
+                               description="@usyncpublish_groupsDesc">
+                <umb-property-editor model="pvm.userGroupPicker" />
+            </umb-control-group>
+
+            <umb-control-group label="@usyncpublish_hideAdvanced"
+                               description="@usyncpublish_hideAdvancedDesc">
+                <umb-checkbox model="model.server.sendSettings.hideAdvanced"></umb-checkbox>
+            </umb-control-group>
+
+        </umb-box-content>
+    </umb-box>
+</div>

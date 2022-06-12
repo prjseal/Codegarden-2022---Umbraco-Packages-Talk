@@ -1,0 +1,11 @@
+{
+  "name": "uSync.PeopleEdition",
+  "version": "9.4.0",
+  "bundleOptions": "None",
+  "javascript": [
+    "~/App_Plugins/uSyncPeopleEdition/usyncpeopleedition.9.4.0.min.js"
+  ],
+  "css": [
+    "~/App_Plugins/uSyncPeopleEdition/usyncpeopleedition.9.4.0.min.css"
+  ]
+}

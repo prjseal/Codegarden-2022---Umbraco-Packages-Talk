@@ -1,0 +1,133 @@
+<div ng-controller="uSyncPublisherSettingsController as vm">
+    <umb-load-indicator ng-if="vm.loading"></umb-load-indicator>
+    <div ng-if="!vm.loading">
+        <usync-expansion-licence product="'Publisher'" version="'8.0.0'"></usync-expansion-licence>
+
+        <form name="uSyncPublisherSettingsForm">
+            <div class="usync-publish-settings">
+                <umb-box class="usync-publish-settings-main">
+                    <umb-box-header title-key="usyncpublish_serverSettings"
+                                    description-key="usyncpublish_serverSettingsDesc">
+                    </umb-box-header>
+                    <umb-box-content>
+                        <umb-control-group label="@usyncpublish_incoming"
+                                           description="@usyncpublish_incomingDesc">
+                            <div ng-if="vm.settings.incomingEnabled"><i class="icon icon-check color-green mr2"></i> Enabled</div>
+                            <div ng-if="!vm.settings.incomingEnabled"><i class="icon icon-wrong color-red mr2"></i> Disabled</div>
+                        </umb-control-group>
+
+                        <umb-control-group label="@usyncpublish_outgoing"
+                                           description="@usyncpublish_outgoingDesc">
+
+                            <div ng-if="vm.settings.outgoingEnabled"><i class="icon icon-check color-green mr2"></i> Enabled</div>
+                            <div ng-if="!vm.settings.outgoingEnabled"><i class="icon icon-wrong color-red mr2"></i> Disabled</div>
+
+                        </umb-control-group>
+
+                        <umb-control-group label="@usyncpublish_securityKey"
+                                           description="@usyncpublish_securityKeyDesc">
+
+                            <div ng-if="!vm.settings.hasAppId">
+                                <localize key="usyncpublish_securityKeyBlank"></localize>
+
+                                <umb-button action="vm.createKeys()"
+                                            label-key="@usyncpublish_createKeys"
+                                            button-style="info"
+                                            type="button"></umb-button>
+                            </div>
+
+                            <div ng-if="vm.settings.hasAppId">
+                                <localize key="usyncpublish_securityKeySet"></localize>
+                            </div>
+                        </umb-control-group>
+
+                        <umb-control-group label="@usyncpublish_serverUrl"
+                                           description="@usyncpublish_serverUrlDesc">
+
+                            <div class="input-group">
+                                <input type="text" id="serverUrl" readonly value="{{vm.settings.serverUrl}}" class="umb-textstring umb-property-editor"
+                                       style="height:34px;max-width:80%;" />
+                                <div class="input-append addon">
+                                    <button ng-click="vm.copyText()" class="btn btn-default"
+                                            localize="title"
+                                            title="@usyncpublish_copyToClipboard"
+                                            prevent-default>
+                                        <i class="icon icon-documents"></i>
+                                    </button>
+                                </div>
+                                <div>
+                                    <small class="muted"><localize key="usyncpublish_serverUrlCopy"></localize></small>
+                                </div>
+                            </div>
+                        </umb-control-group>
+
+                        <umb-control-group label="@usyncpublish_defaultAllowedServers"
+                                           description="@usyncpublish_defaultAllowedServersDesc">
+                            <umb-property-editor model="vm.allowedPicker" />
+                        </umb-control-group>
+                    </umb-box-content>
+                </umb-box>
+            </div>
+
+            <umb-box>
+                <umb-box-content class="alert alert-info usync-alert">
+                    <localize key="usyncpublish_setupAlert"></localize>
+                </umb-box-content>
+            </umb-box>
+
+            <div ng-if="vm.server.publisherConfig.length > 0">
+                <div ng-include="vm.settings.server.publisherConfig"></div>
+            </div>
+
+            <div ng-if="vm.server.publisherConfig.length == 0">
+                <!-- legacy view - this is now per publisher, so we get better publisher options -->
+                <!---->
+                <h5>Publisher does not impliment config.</h5>
+            </div>
+
+            <umb-box>
+                <umb-box-header title="Extras"
+                                description="A little bit more control of who can do what"
+                                ng-click="vm.showAdvanced = !vm.showAdvanced">
+                    <i class="icon icon-navigation-up" ng-if="vm.showAdvanced" title="expand"></i>
+                    <i class="icon icon-navigation-down" ng-if="!vm.showAdvanced" title="collapse"></i>
+                </umb-box-header>
+                <umb-box-content ng-if="vm.showAdvanced">
+
+                    <umb-control-group label="@usyncpublish_groups"
+                                       description="@usyncpublish_groupsDesc">
+                        <umb-property-editor model="vm.userGroupPicker" />
+                    </umb-control-group>
+
+                    <umb-control-group label="@usyncpublish_serverPublisher"
+                                       description="@usyncpublish_serverPublisherDesc">
+                        <div class="umb-property-editor">
+
+                            <div class=" flex items-center">
+                                <select ng-options="publisher.alias as publisher.name for publisher in vm.publishers"
+                                        ng-model="vm.server.publisher"></select>
+                                <div class="ml2">
+                                    {{vm.publisherDescription}}
+                                </div>
+                            </div>
+
+                            <div class="mt2">
+                                <em>
+                                    <small>
+                                        <localize key="usyncpublish_serverPublisherNote"></localize>
+                                    </small>
+                                </em>
+                            </div>
+                        </div>
+                    </umb-control-group>
+
+                    <umb-control-group label="@usyncpublish_hideAdvanced"
+                                       description="@usyncpublish_hideAdvancedDesc">
+                        <umb-checkbox model="vm.server.sendSettings.hideAdvanced"></umb-checkbox>
+                    </umb-control-group>
+
+                </umb-box-content>
+            </umb-box>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,18 @@
+<div ng-controller="uSyncPublisherSeedController as vm">
+
+    <div class="seed-boxes">
+        <div class="seed-box" ng-repeat="group in vm.groups"
+             ng-class="{'selected' : group.selected}"
+             ng-click="group.selected = !group.selected">
+            <i class="icon {{group.icon}} large"></i>
+            <h3>{{group.name}}</h3>
+        </div>
+    </div>
+    <div class="seed-options">
+        <umb-checkbox input-id="includeFiles"
+                      name="includeFiles"
+                      model="vm.process.options.includeFileHash"
+                      text="Include files (templates, etc)"></umb-checkbox>
+    </div>
+
+</div>

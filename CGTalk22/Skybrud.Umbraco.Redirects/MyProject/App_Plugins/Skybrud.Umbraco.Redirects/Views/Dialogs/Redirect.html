@@ -1,0 +1,48 @@
+﻿<div class="SkybrudUmbracoRedirects" ng-controller="SkybrudUmbracoRedirects.RedirectDialog.Controller as vm">
+    <form name="propertiesForm" ng-submit="vm.save()" novalidate val-form-manager>
+        <umb-editor-view>
+            <umb-editor-header
+                name="model.title"
+                name-locked="true"
+                navigation="model.navigation"
+                hide-alias="true"
+                hide-icon="true"
+                hide-description="true">
+            </umb-editor-header>
+            <umb-editor-container>
+                <umb-box>
+                    <umb-box-content ng-show="vm.settingsApp.active">
+                        <div class="redirects-basic-options">
+                            <umb-property property="property" ng-repeat="property in model.properties">
+                                <umb-property-editor model="property"></umb-property-editor>
+                            </umb-property>
+                        </div>
+                        <div class="redirects-advanced-options">
+                            <h4>
+                                <localize key="redirects_labelAdvancedOptions">Advanced options</localize>
+                            </h4>
+                            <umb-property property="property" ng-repeat="property in model.advancedProperties">
+                                <umb-property-editor model="property"></umb-property-editor>
+                            </umb-property>
+                        </div>
+                    </umb-box-content>
+                    <umb-box-content ng-show="vm.infoApp.active">
+                        <umb-property property="property" ng-repeat="property in model.infoProperties">
+                            <umb-property-editor model="property"></umb-property-editor>
+                        </umb-property>
+                    </umb-box-content>
+                </umb-box>
+            </umb-editor-container>
+            <umb-editor-footer>
+                <umb-editor-footer-content-right>
+                    <umb-button ng-if="model.infiniteMode" action="vm.close()" button-style="link" label-key="close" type="button" shortcut="esc"></umb-button>
+                    <umb-button
+                        type="submit"
+                        button-style="success"
+                        label-key="{{model.submitButtonLabelKey}}">
+                    </umb-button>
+                </umb-editor-footer-content-right>
+            </umb-editor-footer>
+        </umb-editor-view>
+    </form>
+</div>

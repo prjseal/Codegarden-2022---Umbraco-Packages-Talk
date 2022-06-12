@@ -1,0 +1,42 @@
+<div ng-controller="uSyncPublisherServerSettingsController as vm">
+    <form id="publisherServerSettingsForm">
+        <umb-editor-view ng-if="!vm.loading">
+            <umb-editor-header name="vm.server.name"
+                               alias="vm.server.alias"
+                               description="vm.server.description"
+                               navigation="vm.page.navigation"
+                               icon="vm.server.icon"
+                               on-select-navigation-item="vm.selectItem(item)">
+            </umb-editor-header>
+
+            <umb-editor-container class="form-horizontal">
+                <umb-editor-sub-views sub-views="vm.page.navigation" model="vm"></umb-editor-sub-views>
+            </umb-editor-container>
+
+            <umb-editor-footer>
+
+                <umb-editor-footer-content-left>
+                </umb-editor-footer-content-left>
+
+                <umb-editor-footer-content-right>
+                    <div>
+
+                        <umb-button type="button"
+                                    button-style="link"
+                                    label-key="general_close"
+                                    action="vm.close()"
+                                    ng-if="vm.showClose">
+                        </umb-button>
+
+                        <umb-button type="button"
+                                    button-style="action"
+                                    label-key="buttons_save"
+                                    state="vm.buttonState"
+                                    action="vm.save()">
+                        </umb-button>
+                    </div>
+                </umb-editor-footer-content-right>
+            </umb-editor-footer>
+        </umb-editor-view>
+    </form>
+</div>

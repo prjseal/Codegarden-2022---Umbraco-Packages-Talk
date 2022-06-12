@@ -1,0 +1,38 @@
+<!-- usync.publisher - enabling directions. -->
+<umb-pane>
+
+    <p>
+        A server can be set to accept or decline incoming and outgoing requests from other servers.
+    </p>
+
+    <h3>Incoming Enabled <small>(default : false)</small></h3>
+    <p>
+        This server will accept requests from other usync.publisher servers, this means it will allow content
+        to be pushed to or pulled from this server to other configured servers.
+    </p>
+
+    <h3>Outgoing Enabled <small>(default : true)</small></h3>
+    
+    <p>
+        This server will show editors the push (and pull) menu items and allow them to push and pull settings
+        to other servers from this server.
+    </p>
+
+    <h3>appsettings.json</h3>
+    <p>
+        You can enable or disable these settings in your sites appsettings.json file,
+        or <a href="https://docs.microsoft.com/en-us/aspnet/core/fundamentals/configuration/?view=aspnetcore-5.0">other configuration locations</a> depending on how you have setup your hosting environment.
+    </p>
+
+    <h4>Sample appsettings.json config</h4>
+    <pre class="code">"uSync": { 
+    "Publisher": {
+      "Settings": {
+        "IncomingEnabled": true,
+        "OutgoingEnabled": true
+        }
+    }
+}</pre>
+
+
+</umb-pane>

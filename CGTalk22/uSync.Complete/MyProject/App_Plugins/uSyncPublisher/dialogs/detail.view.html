@@ -1,0 +1,101 @@
+<div ng-controller="uSyncPublisherDetailViewController as vm">
+
+    <umb-box ng-if="vm.isContent == true">
+        <umb-box-header title="Side by Side view"
+                        description="Live view of this page on both sites.">
+        </umb-box-header>
+        <umb-box-container ng-if="!vm.loading">
+            <umb-box-content>
+                <div class="usync-sbs-view">
+
+                    <!-- source -->
+                    <div>
+                        <h4>Local : {{vm.localUrl}}</h4>
+                        <iframe ng-src="{{vm.localUrl}}"></iframe>
+                    </div>
+
+                    <!-- target -->
+                    <div>
+                        <h4>{{vm.server.name}}: {{vm.remoteUrl}}</h4>
+                        <iframe ng-src="{{vm.remoteUrl}}"></iframe>
+                    </div>
+                </div>
+            </umb-box-content>
+        </umb-box-container>
+    </umb-box>
+
+    <umb-box ng-if="vm.isContent != true">
+        <umb-box-header title="Media comparison"
+                        description="Media item on each server">
+        </umb-box-header>
+        <umb-box-container>
+            <umb-box-content>
+                <umb-load-indicator ng-if="vm.loading"></umb-load-indicator>
+
+                <div class="flex justify-around" ng-if="!vm.loading">
+                    <div class="" style="width:50%">
+
+                        <h4>Local</h4>
+                        <div ng-if="vm.localMedia" class="umb-cropper-imageholder">
+                            <umb-image-gravity class="umb-media-entry-editor__imageholder"
+                                               src="vm.localMedia.src"
+                                               center="vm.localMedia.focalPoint">
+                            </umb-image-gravity>
+                        </div>
+
+                        <div ng-if="vm.localMedia.crops">
+                            <h5>Crops</h5>
+                            <div ng-repeat="(key,value) in vm.localMedia.crops" class="flex mt2">
+                                <div class="">
+                                    <umb-image-thumbnail center="vm.localMedia.focalPoint"
+                                                         crop="value.coordinates"
+                                                         src="vm.localMedia.src"
+                                                         height="{{value.height}}"
+                                                         width="{{value.width}}"
+                                                         max-size="75">
+                                    </umb-image-thumbnail>
+                                </div>
+
+                                <div class="crop-information ml4">
+                                    <div class=""><strong>{{value.alias}}</strong></div>
+                                    <small class="">{{value.width}} &times; {{value.height}} px</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="width:50%">
+
+                        <h4>{{vm.server.name}}</h4>
+                        <div class="umb-cropper-imageholder" ng-if="vm.remoteMedia">
+                            <umb-image-gravity class="umb-media-entry-editor__imageholder"
+                                               src="vm.remoteMedia.src"
+                                               center="vm.remoteMedia.focalPoint">
+                            </umb-image-gravity>
+                        </div>
+
+                        <div ng-if="vm.remoteMedia.crops">
+                            <h5>Crops</h5>
+                            <div ng-repeat="(key,value) in vm.remoteMedia.crops" class="flex mt2">
+                                <div class="">
+                                    <umb-image-thumbnail center="vm.remoteMedia.focalPoint"
+                                                         crop="value.coordinates"
+                                                         src="vm.remoteMedia.src"
+                                                         height="{{value.height}}"
+                                                         width="{{value.width}}"
+                                                         max-size="75">
+                                    </umb-image-thumbnail>
+                                </div>
+
+                                <div class="crop-information ml4">
+                                    <div class=""><strong>{{value.alias}}</strong></div>
+                                    <small class="">{{value.width}} &times; {{value.height}} px</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </umb-box-content>
+        </umb-box-container>
+    </umb-box>
+
+</div>

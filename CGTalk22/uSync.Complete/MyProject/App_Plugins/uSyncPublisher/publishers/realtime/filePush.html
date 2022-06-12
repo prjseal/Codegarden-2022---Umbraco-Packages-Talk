@@ -1,0 +1,25 @@
+<div ng-controller="uSyncPublisherOptionsController as pvm">
+    <div class="usync-publish-options">
+
+        <div ng-if="pvm.server.SendSettings.Message.length > 0" class="usync-publish-server-message">
+            {{pvm.server.SendSettings.Message}}
+        </div>
+
+        <div class="usync-advanced">
+
+            <div><strong>Push {{pvm.firstItem.name}} <span ng-if="vm.item.hasChildren">and all child items</span></strong></div>
+
+            <div class="mb2 mt2">
+                <localize ng-if="pvm.mode === 'filePush'" key="usyncpublish_filesPush"></localize>
+                <localize ng-if="pvm.mode === 'filePull'" key="usyncpublish_filesPull"></localize>
+            </div>
+
+            <hr />
+            <div class="color-blue">
+                Dependencies for the files you are pushing have not been calculated, you should ensure you also push any
+                other files that these items require.
+            </div>
+        </div>
+
+    </div>
+</div>

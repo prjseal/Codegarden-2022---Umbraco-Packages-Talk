@@ -1,0 +1,59 @@
+[
+  {
+    "icon": "icon-infinity color-blue",
+    "heading": "Content & Media",
+    "subHeading": "for when settings are deployed separately",
+    "description": "<p>Settings are already synced by your deployment process.</p><p>Minimal editor choice.</p><p><em>Recommended when site settings are deployed using CI/CD</em></p>",
+    "publisher": "realtime",
+    "publisherConfig": "/App_Plugins/uSyncPublisher/publishers/realtime/serverConfig.html",
+    "flags": {
+      "includeChildren": "user-yes",
+      "includeMedia": "yes",
+      "deleteMissing": "user-yes",
+      "includeConfig": "yes",
+      "includeDependencies": "no",
+      "includeFiles": "no",
+      "includeAncestors": "no",
+      "includeLinked": "no",
+      "groups": [ "admin", "editor" ]
+    }
+  },
+  {
+    "icon": "icon-server color-green",
+    "heading": "Content & Media & Settings",
+    "subHeading": "Sync everything as part of a push/pull",
+    "description": "<p>Send Content and Settings as part of the deployment process.</p><p>Minimal editor choice.</p><p><em>Recommended for editors when site is not deployed via other methods</em></p>",
+    "publisher": "realtime",
+    "publisherConfig": "/App_Plugins/uSyncPublisher/publishers/realtime/serverConfig.html",
+    "flags": {
+      "includeChildren": "user-yes",
+      "includeMedia": "yes",
+      "deleteMissing": "user-yes",
+      "includeConfig": "yes",
+      "includeDependencies": "yes",
+      "includeFiles": "yes",
+      "includeAncestors": "no",
+      "includeLinked": "no",
+      "groups": [ "admin", "editor" ]
+    }
+  }, 
+  {
+    "icon": "icon-sunny color-purple",
+    "heading": "Blank",
+    "subHeading": "Clean Template",
+    "description": "Blank template, no settings already set, choose your own settings",
+    "publisher": "realtime",
+    "publisherConfig": "/App_Plugins/uSyncPublisher/publishers/realtime/serverConfig.html",
+    "flags": {
+      "includeChildren": "no",
+      "includeMedia": "no",
+      "deleteMissing": "no",
+      "includeConfig":  "no",
+      "includeDependencies": "no",
+      "includeFiles": "no",
+      "includeAncestors": "no",
+      "includeLinked": "no",
+      "groups": [ "admin", "editor" ]
+    }
+  }
+]
