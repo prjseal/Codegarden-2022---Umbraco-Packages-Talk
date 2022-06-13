@@ -1,0 +1,103 @@
+<div ng-controller="publisherServerSettingsController as pvm">
+    <umb-box>
+        <umb-box-header title-key="usyncpublish_serverSetup"
+                        description-key="usyncpublish_serverSetupDesc">
+            <div class="flex">
+
+                <div class="server-status server-status-heading" ng-if="model.checked">
+                    <div ng-if="model.status.enabled"><i class="icon icon-check color-green"></i> <localize key="usyncpublish_availible">Availible</localize> </div>
+                    <div ng-if="model.status.enabled === undefined"
+                         class="usync-wait-animate"></div>
+                    <div ng-if="model.status.enabled === false">
+                        <i class="icon icon-wrong color-red"></i>
+                        {{model.errorDesc}} <em>[{{model.status.status}}]</em>
+                    </div>
+                </div>
+
+
+                <umb-button ng-if="!model.checked"
+                            type="link"
+                            button-style="link"
+                            label-key="usyncpublish_check"
+                            icon="icon-connection"
+                            state="model.checkStatus"
+                            action="model.checkServer(false)">
+                </umb-button>
+
+                <umb-button-group ng-if="model.status.enabled"
+                                  default-button="model.syncbuttons.defaultButton"
+                                  sub-buttons="model.syncbuttons.subButtons"
+                                  direction="down"
+                                  float="left"
+                                  button-style="default"
+                                  disabled="!model.status.enabled">
+                </umb-button-group>
+            </div>
+
+        </umb-box-header>
+        <umb-box-content ng-if="!model.loading">
+
+            <umb-control-group label="@usyncpublish_url"
+                               description="@usyncpublish_urlDesc">
+                <input type="text" class="umb-textstring umb-property-editor"
+                       ng-model="model.server.url" required />
+            </umb-control-group>
+
+            <umb-control-group label="@usyncpublish_serverMessage"
+                               description="@usyncpublish_serverMessageDesc">
+                <textarea id="message" ng-model="model.server.sendSettings.message"
+                          class="umb-textstring umb-property-editor"
+                          rows="3"></textarea>
+            </umb-control-group>
+
+            <umb-control-group label="@usyncpublish_allowedServers"
+                               description="@usyncpublish_allowedServersDesc">
+                <umb-property-editor model="pvm.allowedPicker" />
+            </umb-control-group>
+        </umb-box-content>
+
+    </umb-box>
+
+    <umb-box>
+        <umb-box-header title="Sync settings"
+                        description="Control what your editors see">
+            <em>You can setup more fine grained control in the advanced section</em>
+        </umb-box-header>
+        <umb-box-content>
+            <localize key="usyncpublish_quickSettingsIntro"></localize>
+
+            <div class="flex">
+
+                <div class="usync-sync-box selected"
+                     ng-class="{'selected' : pvm.hasContent()}"
+                     ng-click="pvm.toggleContent()">
+                    <i class="icon icon-documents"></i>
+                    <h5><localize key="usyncpublish_quickContentTitle"></localize></h5>
+                    <p><localize key="usyncpublish_quickContentDesc"></localize></p>
+                </div>
+
+                <div class="usync-sync-box"
+                     ng-class="{'selected' : pvm.hasSettings()}"
+                     ng-click="pvm.toggleSettings()">
+                    <i class="icon icon-settings-alt"></i>
+                    <h5><localize key="usyncpublish_quickSettingsTitle"></localize></h5>
+                    <p><localize key="usyncpublish_quickSettingsDesc"></localize></p>
+                </div>
+
+                <div class="usync-sync-box"
+                     ng-class="{'selected' : pvm.hasFiles()}"
+                     ng-click="pvm.toggleFiles()">
+                    <i class="icon icon-file-cabinet"></i>
+                    <h5><localize key="usyncpublish_quickFilesTitle"></localize></h5>
+                    <p><localize key="usyncpublish_quickFilesDesc"></localize></p>
+                </div>
+
+            </div>
+
+
+
+        </umb-box-content>
+        </umb-box>
+
+
+</div>

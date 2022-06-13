@@ -1,0 +1,11 @@
+{
+  "name": "uSync.Complete",
+  "version": "9.4.0",
+  "javascript": [
+    "~/App_Plugins/uSyncExpansions/usyncexpansions.9.4.0.min.js"
+  ],
+  "css": [
+    "~/App_Plugins/uSyncExpansions/usyncexpansions.9.4.0.min.css"
+  ],
+  "bundleOptions": "None"
+}

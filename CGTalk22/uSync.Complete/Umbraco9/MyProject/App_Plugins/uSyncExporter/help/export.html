@@ -1,0 +1,50 @@
+<!-- create a sync pack help -->
+<umb-pane>
+    <p>A sync pack is the collection of configuration and files needed to recreate settings and content on an Umbraco installation</p>
+
+    <h5>Pack Elements</h5>
+    <p>
+        you can select any number of elements to include in your sync pack
+    </p>
+
+    <h5>Include media files</h5>
+    <p>
+        Include the media files associated with any media items that are synced.
+    </p>
+
+    <h5>Include website files</h5>
+    <p>
+        Include all files required to display the site, (templates, css, scripts)
+    </p>
+    <p class="text-info">
+        If you tick this box you get all files, regardless of what templates, or scripts you pick from the dashboard. If 
+        you only want to include some files, you should use the pickers and leave this box unticked.
+    </p>
+    <h5>Include node config</h5>
+    <p>
+        Included the configuration associated with any content node, e.g Culture and Hostnames, or Public access settings.
+    </p>
+
+    <h5>Include linked items</h5>
+    <p>
+        Include all items that are linked to the items you have selected, e.g if you pick a single page all the pages linked
+        to on that page via the content or content pickers, will be included in the export. 
+    </p>
+    <p class="text-info">
+        Including items that are linked from other items, can result in large sync files, especially if it is
+        also combined with other settings such as include children / ancestors as all items linked in those
+        elsements will also be calculated.
+    </p>
+    <h5>Dependencies</h5>
+    <p>
+        Elements that are needed for any selected item, (e.g datatypes for a doctype)
+    </p>
+    <p>
+        Including dependencies means the whole item can be recreated on another umbraco instance, you should only uncheck this option
+        if you are sure the target umbraco installation has all the configuration needed to recreate an item.
+    </p>
+    <h5>Children</h5>
+    <p>Any elements that live below this element within the tree</p>
+    <h5>Ancestors</h5>
+    <p>The parent elments for an item, including these will build the tree when you import into a new instance</p>
+</umb-pane>

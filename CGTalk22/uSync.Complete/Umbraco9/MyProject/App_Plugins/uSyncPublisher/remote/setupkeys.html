@@ -1,0 +1,21 @@
+<div>
+
+    <div ng-if="!model.showResult">
+        <localize key="usyncpublish_keysetup"></localize>
+    </div>
+
+    <div ng-if="model.showResult">
+        <localize key="usyncpublish_keysetupresult"></localize>
+
+        <div class="mt2 mb4">
+            <div class="flex mb1 mt1"><div class="flx-b2 text-right">AppId :</div><div class="strong">{{model.result.appId}}</div></div>
+            <div class="flex mb1 mt1"><div class="flx-b2 text-right">AppKey :</div><div class="strong">{{model.result.appKey}}</div></div>
+        </div>
+
+        <h4>appsettings.json config</h4>
+        <div>
+            <umb-code-snippet language="'json'">{{model.result.json}}</umb-code-snippet>
+        </div>
+    </div>
+
+</div>

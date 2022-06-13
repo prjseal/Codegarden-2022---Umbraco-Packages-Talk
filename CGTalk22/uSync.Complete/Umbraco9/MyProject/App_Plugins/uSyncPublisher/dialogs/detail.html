@@ -1,0 +1,83 @@
+<div ng-controller="uSyncPublisherDetailController as vm"
+     class="usync-publisher-dashboard">
+    <umb-editor-panel>
+        <umb-editor-header name="'Change details'"
+                           description="'what is going to change'"
+                           description-locked="true"
+                           name-locked="true"
+                           hide-alias="true"
+                           hide-icon="true"
+                           navigation="vm.page.navigation"
+                           on-select-navigation-item="vm.selectNavigationItem(item)">
+        </umb-editor-header>
+
+        <umb-editor-container>
+
+            <umb-box ng-if="vm.showServers" ng-show="!vm.hideServerBox">
+                <umb-box-header title="Pick a server"
+                                description="choose which server to compare changes on">
+                </umb-box-header>
+                <umb-box-content>
+                    <usync-server-picker picker-title="Pick a server"
+                                         description="Choose which server to see changes on"
+                                         servers="vm.servers"
+                                         on-selected="vm.onSelected(server)"
+                                         class="usync-inline-server-list"
+                                         hide-box="true">
+                    </usync-server-picker>
+                </umb-box-content>
+            </umb-box>
+
+            <div class="usync-fresh-view" ng-if="vm.showServers && !vm.loaded">
+                <div class="umb-empty-state" ng-class="{ '-small': size === 'small', '-large': size === 'large', '-center': position === 'center' }">
+                    <div class="usync-group-box-title">
+                        <i class="icon icon-infinity"></i>
+                        <h2>uSync all the things</h2>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="alert usync-no-change-alert" ng-if="vm.missing">
+                <div class="mr2"><i class="icon icon-block color-green"></i></div>
+                <div>
+                    <h4>Missing</h4>
+                    <p>
+                        This item does not exist or cannot be found on the target site
+                    </p>
+                </div>
+            </div>
+
+            <div ng-if="vm.loaded">
+                <div ng-if="vm.item.change == 'NoChange'" class="flex items-center alert usync-no-change-alert">
+                    <div class="mr2"><i class="icon icon-check color-green"></i></div>
+                    <div>
+                        <h4>In Sync</h4>
+                        <p>
+                            This item is in sync between these two sites, there are no changes to show.
+                        </p>
+                    </div>
+                </div>
+
+                <umb-editor-sub-views sub-views="vm.page.navigation" model="vm"></umb-editor-sub-views>
+            </div>
+        </umb-editor-container>
+
+        <umb-editor-footer>
+
+            <umb-editor-footer-content-left>
+                <small><i class="icon {{vm.server.icon}} small"></i> {{vm.server.name}} : {{vm.server.url}}</small>
+            </umb-editor-footer-content-left>
+
+            <umb-editor-footer-content-right>
+                <umb-button type="button"
+                            button-style="link"
+                            label-key="general_close"
+                            shortcut="esc"
+                            action="vm.close()">
+                </umb-button>
+            </umb-editor-footer-content-right>
+        </umb-editor-footer>
+    </umb-editor-panel>
+
+</div>

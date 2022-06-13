@@ -1,0 +1,51 @@
+<div ng-controller="publisherServerSettingsController as vm">
+
+    <div ng-if="model.server.publisherConfig.length > 0">
+        <div ng-include="model.server.publisherConfig"></div>
+    </div>
+
+    <div ng-if="model.server.publisherConfig.length == 0">
+        <h5>Publisher does not impliment config.</h5>
+    </div>
+
+    <umb-box>
+        <umb-box-content>
+            <umb-control-group label="@usyncpublish_serverPublisher"
+                               description="@usyncpublish_serverPublisherDesc">
+                <div class="umb-property-editor">
+
+                    <div class=" flex items-center">
+                        <select ng-options="publisher.alias as publisher.name for publisher in model.publishers"
+                                ng-model="model.server.publisher"></select>
+                        <div class="ml2">
+                            {{model.publisherDescription}}
+                        </div>
+                    </div>
+
+                    <div class="mt2">
+                        <em>
+                            <small>
+                                <localize key="usyncpublish_serverPublisherNote"></localize>
+                            </small>
+                        </em>
+                    </div>
+                </div>
+            </umb-control-group>
+            <umb-control-group label="@usyncpublish_baseUrl"
+                               description="@usyncpublish_baseUrlDesc">
+
+                    <input type="text" class="umb-textstring umb-property-editor"
+                           ng-model="model.server.baseUrl" required />
+                    <div class="mt2">
+                        <em>
+                            <small>
+                                <localize key="usyncpublish_baseUrlNote"></localize>
+                            </small>
+                        </em>
+                    </div>
+            </umb-control-group>
+        </umb-box-content>
+    </umb-box>
+
+
+</div>

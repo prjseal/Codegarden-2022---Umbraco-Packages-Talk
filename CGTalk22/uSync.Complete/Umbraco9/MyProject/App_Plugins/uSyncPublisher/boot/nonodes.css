@@ -1,0 +1,18 @@
+section {
+    background-image: url('/App_Plugins/uSyncPublisher/boot/RocketEngines.jpg') !important;
+}
+
+    section .logo {
+        background-image: url('/App_Plugins/uSyncPublisher/boot/complete.png');
+    }
+
+.button.usync-button {
+    margin-top: 25px;
+    display: inline-block;
+    background-color: #2196f3 !important;
+}
+
+
+    .button.usync-button.usync-complete {
+        border: 2px solid #4FC3F7;
+    }

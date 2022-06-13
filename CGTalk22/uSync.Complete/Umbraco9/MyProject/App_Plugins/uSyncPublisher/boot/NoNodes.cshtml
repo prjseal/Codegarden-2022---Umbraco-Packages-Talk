@@ -1,0 +1,113 @@
+@using Microsoft.Extensions.Options
+@using Umbraco.Cms.Core.Configuration.Models
+@using Umbraco.Cms.Core.Hosting
+@using Umbraco.Cms.Core.Routing
+@using Umbraco.Extensions
+@using uSync.BackOffice
+@using uSync.BackOffice.Configuration
+@using uSync.Publisher.Configuration
+
+@model Umbraco.Cms.Web.Website.Models.NoNodesViewModel
+
+@inject IHostingEnvironment hostingEnvironment
+@inject IOptions<GlobalSettings> globalSettings
+@inject uSyncConfigService uSyncConfig;
+@inject uSyncService uSyncService;
+@inject SyncPublishConfigService publisherConfigService;
+@{
+    var uSyncPath = Model.UmbracoPath + "#/settings/usync/dashboard";
+    var pubisherPath = Model.UmbracoPath + "#/settings/uSyncPublisher/dashboard?firstsync=true";
+
+    var root = uSyncConfig.GetRootFolder();
+    var hasuSyncContent = uSyncService.HasContentFiles(root);
+
+    var hasSeedServer = !string.IsNullOrWhiteSpace(publisherConfigService.Options.SeedServerUrl);
+}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <link rel="shortcut icon" href="/App_Plugins/uSyncPublisher/boot/complete.png">
+
+    <title>Umbraco: No published content</title>
+
+    <link rel="stylesheet" href="@WebPath.Combine(Model.UmbracoPath, "assets/css/nonodes.style.min.css")">
+    <link rel="stylesheet" href="@WebPath.Combine("/App_Plugins/uSync/boot/nonodes.css")" />
+    <link rel="stylesheet" href="@WebPath.Combine("/App_Plugins/uSyncPublisher/boot/nonodes.css")" />
+</head>
+<body>
+
+    <section>
+        <article>
+            <div>
+                <div class="logo"></div>
+                <!-- <h1>Welcome to your Umbraco installation</h1> -->
+                <h1>uSync all the things</h1>
+                <h3>
+                    You are seeing this page because your site doesn't contain any published content
+                </h3>
+
+                <div class="cta">
+                    <a href="@Model.UmbracoPath" class="button">Open Umbraco</a>
+                </div>
+
+                <div class="row">
+                    @if (hasSeedServer)
+                    {
+                        <div class="col">
+                            <h2>Sync content from another server</h2>
+                            <p>Yopu have uSync complete installed and can sync the content from another server</p>
+
+                            <div class="flex-center">
+                                <a href="@pubisherPath" class="button usync-button usync-complete">Sync from remote site</a>
+                            </div>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="col">
+                            <h2>uSync SiteSeed 🌱</h2>
+                            <p>
+                                with uSync.Complete you can setup your site from a remote server!. 
+                                Simply configure a Seed Url in the config, and any new sites you build can 
+                                connect to the server and pull their settings, content and media from that 
+                                server directly.
+                            </p>
+
+                            <a href="https://docs.jumoo.co.uk/usync/complete/publisher/siteseed" target="_blank" rel="noopener">uSync SiteSeed docs →</a>
+                        </div>
+                    }
+
+                    @if (hasuSyncContent)
+                    {
+                        <div class="col">
+                            <h2>Your site has uSync Content Files</h2>
+                            <p>
+                                There are uSync files located on the disk for this site. You can import
+                                them now and get the site setup and ready to roll.
+                            </p>
+                            <div class="flex-center">
+                                <a href="@uSyncPath" class="button usync-button">Import local uSync files</a>
+                            </div>
+                        </div>
+                    }
+                    else 
+                    {
+                        <div class="col">
+                            <h2>uSync FirstBoot</h2>
+                            <p>
+                                uSync FirstBoot, can be configured to setup your site with fresh
+                                content and settings and even connect it to other servers in your
+                                uSync.Publisher setup
+                            </p>
+
+                            <a href="https://docs.jumoo.co.uk/usync/uSync/key_topics/firstboot" target="_blank" rel="noopener">uSync FirstBoot docs →</a>
+                        </div>
+                    }
+                </div>
+
+            </div>
+        </article>
+    </section>
+</body>
+</html>

@@ -1,0 +1,126 @@
+<div ng-controller="uSyncPublisherSettingsDefaultController as vm">
+
+    <umb-load-indicator ng-if="vm.loading"></umb-load-indicator>
+    <div ng-if="!vm.loading" class="usync-publisher-dashboard">
+        <usync-expansion-licence product="'Publisher'" version="'8.0.0'"></usync-expansion-licence>
+        <umb-box>
+            <umb-box-content class="usync-publisher-dashboard-heading">
+                <div class="flex justify-between">
+                    <div>
+                        <h4 ng-if="vm.settings.serverName">
+                            <localize key="usyncpublish_currentServer"></localize> : <strong>{{vm.settings.serverName}}</strong>
+                        </h4>
+                        <small>
+                            <span id="serverUrl">{{vm.settings.serverUrl}}</span>
+                            <button ng-click="vm.copyText()" class="btn btn-link btn-small"
+                                    prevent-default
+                                    localize="title"
+                                    title="@usyncpublish_copyToClipboard">
+                                <i class="icon icon-documents"></i>
+                            </button>
+                        </small>
+                        <div ng-if="!vm.settings.isInList">
+                            <i class="icon icon-add color-green"></i>
+                            <button ng-click=vm.addSelf() class="btn btn-link btn-small pl0 pt0"
+                                    prevent-default
+                                    title="Add this server to the list">
+                                Add this server
+                            </button>
+                        </div>
+                    </div>
+                    <div>
+                        <h5 class="text-right">
+                            <localize key="usyncpublish_directions"></localize>
+                            <button class="btn btn-link usync-box-help-icon"
+                                    ng-click="vm.showHelp('Edit Sync directions', 'direction');">
+                                <i class="icon icon-help-alt" title="help"></i>
+                            </button>
+                        </h5>
+                        <div class="flex">
+                            <div class="flex items-center ml2">
+                                <i class="icon icon-check color-green" ng-if="vm.settings.incomingEnabled"></i>
+                                <i class="icon icon-wrong color-red" ng-if="!vm.settings.incomingEnabled"></i>
+                                <div class="ml2"><localize key="usyncpublish_incoming"></localize></div>
+                            </div>
+
+                            <div class="flex items-center ml2">
+                                <i class="icon icon-check color-green" ng-if="vm.settings.outgoingEnabled"></i>
+                                <i class="icon icon-wrong color-red" ng-if="!vm.settings.outgoingEnabled"></i>
+                                <div class="ml2"><localize key="usyncpublish_outgoing"></localize></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </umb-box-content>
+        </umb-box>
+
+
+        <div class="flex flex-wrap">
+            <div ng-repeat="server in vm.servers"
+                 class="usync-server-box usync-server-box-wide umb-box usync-settings-box"
+                 ng-class="{'selected' : server.name == vm.settings.serverName }">
+                <div ng-click="server._buttons.defaultButton.handler()">
+
+                    <i class="icon {{server.icon}}"></i>
+
+                    <h5>{{server.name}}</h5>
+                    <small>{{server.url}}</small>
+                    <small class="muted"><em>{{server.publisher}}</em></small>
+
+                    <div class="server-status">
+                        <div ng-if="server.status.enabled"><i class="icon icon-check color-green"></i> <localize key="usyncpublish_availible">Availible</localize> </div>
+                        <div ng-if="server.status.enabled === undefined"
+                             class="usync-wait-animate"></div>
+                        <div ng-if="server.status.enabled === false"><i class="icon icon-wrong color-red"></i> <localize key="usyncpublish_unavailible">Unavailible</localize> </div>
+                    </div>
+
+                    <small ng-if="server.name == vm.settings.serverName">(Current Server)</small>
+                </div>
+                <div class="usync-server-actions-buttons">
+                    <umb-button-group default-button="server._buttons.defaultButton"
+                                      sub-buttons="server._buttons.subButtons"
+                                      direction="down"
+                                      float="right"
+                                      button-style="primary"
+                                      disabled="!server.status.enabled">
+                    </umb-button-group>
+                </div>
+            </div>
+
+            <div class="usync-server-box usync-server-box-wide umb-box usync-settings-box usync-server-new-box"
+                 ng-click="vm.addNew()">
+
+                <i class="icon icon-server"></i>
+
+                <h5>
+                    <localize key="usyncpublish_addNew"></localize>
+                </h5>
+
+                <div class="server-status">
+                    <div>
+                        <i class="icon icon-plugin"></i>
+                        <localize key="usyncpublish_addNew"></localize>
+                    </div>
+                </div>
+
+                <div class="usync-server-actions">
+
+
+                    <umb-button type="button"
+                                button-style="link"
+                                label-key="usyncpublish_addNew"
+                                icon="icon-add"
+                                stats="vm.buttonState"
+                                disabled="vm.working"></umb-button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <umb-overlay ng-if="vm.help.show"
+                 model="vm.help"
+                 view="vm.help.view"
+                 position="right"></umb-overlay>
+
+</div>
