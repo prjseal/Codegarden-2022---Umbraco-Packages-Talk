@@ -1,0 +1,9 @@
+﻿<div>
+    <div class="alert alert-{{vm.status.Type}} usync-expansion-licence-status" ng-if="vm.status.Show">
+        {{vm.status.Message}}
+        <strong><a ng-if="vm.status.Link.length > 0" href="{{vm.status.Link}}" target="_blank">more info</a></strong>
+    </div>
+    <div ng-if="vm.status.FipsEnabled == true" class="alert alert-warning">
+        <localize key="usynccomp_fipswarning"></localize>
+    </div>
+</div>
