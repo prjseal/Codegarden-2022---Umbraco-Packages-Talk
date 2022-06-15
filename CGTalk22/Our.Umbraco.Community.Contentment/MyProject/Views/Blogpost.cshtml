@@ -1,10 +1,14 @@
 ﻿@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels
 @using Microsoft.AspNetCore.Mvc.Rendering
+@using Umbraco.Cms.Core
 @using Umbraco.Extensions
 @inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<ContentModels.Blogpost>
+
 @{
     Layout = "master.cshtml";
     var authorId = Model.Author;
+    var authorUdi = Udi.Create(new Uri(authorId));
+    var author = Umbraco.Content(authorUdi);
 }
 @Html.Partial("~/Views/Partials/SectionHeader.cshtml")
 
@@ -17,8 +21,8 @@
                     @Html.Partial("~/Views/Partials/CategoryLinks.cshtml", Model.Categories)
                 </span>
             </div>
+            <p><small class="blogpost-date">by <a href="@author.Url()">@author.Name</a></small></p>
             <h3>@Model.Excerpt</h3>
-            @authorId
             @Html.GetGridHtml(Model, "bodyText", "bootstrap3-fluid")
             <!-- todo: implement discus comments -->
         </article>

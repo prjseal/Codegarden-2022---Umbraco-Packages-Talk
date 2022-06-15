@@ -1,0 +1,16 @@
+{
+  "version": 2,
+  "dgSpecHash": "H7U/VhCgnwisiBo8Kw6YDlLnAqgvIrZuG3yY4Rt7d79b2lxkXxhi8OFPeLU+pw5eqgXJyX5oTyO40NDtuv86zA==",
+  "success": true,
+  "projectFilePath": "D:\\piess\\Code\\GitHub\\CG22\\CGTalk22\\QRCoderSample\\QRCoderSample\\QRCoderSample.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\piess\\.nuget\\packages\\microsoft.netcore.platforms\\5.0.0\\microsoft.netcore.platforms.5.0.0.nupkg.sha512",
+    "C:\\Users\\piess\\.nuget\\packages\\microsoft.win32.systemevents\\5.0.0\\microsoft.win32.systemevents.5.0.0.nupkg.sha512",
+    "C:\\Users\\piess\\.nuget\\packages\\qrcoder\\1.4.3\\qrcoder.1.4.3.nupkg.sha512",
+    "C:\\Users\\piess\\.nuget\\packages\\sixlabors.imagesharp\\2.1.2\\sixlabors.imagesharp.2.1.2.nupkg.sha512",
+    "C:\\Users\\piess\\.nuget\\packages\\system.drawing.common\\5.0.3\\system.drawing.common.5.0.3.nupkg.sha512",
+    "C:\\Users\\piess\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\5.0.0\\system.runtime.compilerservices.unsafe.5.0.0.nupkg.sha512",
+    "C:\\Users\\piess\\.nuget\\packages\\system.text.encoding.codepages\\5.0.0\\system.text.encoding.codepages.5.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}
